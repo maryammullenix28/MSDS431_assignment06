@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/montanaflynn/stats"
@@ -9,12 +10,16 @@ import (
 	"time"
 )
 
-func createCoordinateSlice(x, y []float64) []stats.Coordinate {
+// Function modified using GitHub Copilot
+func createCoordinateSlice(x, y []float64) ([]stats.Coordinate, error) {
+	if len(x) != len(y) {
+		return nil, errors.New("input slices have different lengths")
+	}
 	data := make([]stats.Coordinate, len(x))
 	for i := range x {
 		data[i] = stats.Coordinate{X: float64(x[i]), Y: y[i]}
 	}
-	return data
+	return data, nil
 }
 
 func calculateLinearRegression(data []stats.Coordinate) (float64, float64) {
@@ -81,7 +86,7 @@ func getFStatistic(x []float64, ssto, sse float64) (float64, float64) {
 
 func getLinearRegressionSummary(x, y []float64, variable string) {
 	// Create coordinate slice
-	data := createCoordinateSlice(x, y)
+	data, _ := createCoordinateSlice(x, y)
 
 	// Calculate linear regression
 	slope, yIntercept := calculateLinearRegression(data)

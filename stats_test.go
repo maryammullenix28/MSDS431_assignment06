@@ -10,7 +10,7 @@ func TestCalculateLinearRegression(t *testing.T) {
 	// Set up test data
 	x := []float64{10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5}
 	y := []float64{9.14, 8.14, 8.74, 8.77, 9.26, 8.1, 6.13, 3.1, 9.13, 7.26, 4.74}
-	data := createCoordinateSlice(x, y)
+	data, _ := createCoordinateSlice(x, y)
 
 	slope, yIntercept := calculateLinearRegression(data)
 
@@ -33,7 +33,7 @@ func TestCalculateLinearRegression(t *testing.T) {
 func TestCalculateRSquaredAndAdjustedRSquared(t *testing.T) {
 	x := []float64{10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5}
 	y := []float64{9.14, 8.14, 8.74, 8.77, 9.26, 8.1, 6.13, 3.1, 9.13, 7.26, 4.74}
-	data := createCoordinateSlice(x, y)
+	data, _ := createCoordinateSlice(x, y)
 	slope, yIntercept := calculateLinearRegression(data)
 
 	yHat := calculateYHat(x, slope, yIntercept)
@@ -59,7 +59,7 @@ func TestCalculateRSquaredAndAdjustedRSquared(t *testing.T) {
 func TestGetFStatistic(t *testing.T) {
 	x := []float64{10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5}
 	y := []float64{9.14, 8.14, 8.74, 8.77, 9.26, 8.1, 6.13, 3.1, 9.13, 7.26, 4.74}
-	data := createCoordinateSlice(x, y)
+	data, _ := createCoordinateSlice(x, y)
 	slope, yIntercept := calculateLinearRegression(data)
 
 	yHat := calculateYHat(x, slope, yIntercept)
